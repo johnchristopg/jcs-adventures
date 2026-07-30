@@ -2,7 +2,7 @@ import React from 'react';
 import { PortfolioItem } from '../types';
 import { ScrollIcon } from './GreekIcon';
 import { GreekKeyDivider } from './GreekKeyDivider';
-import { FileText, Eye, Calendar, FileCode } from 'lucide-react';
+import { FileText, Eye, Edit3, Calendar, FileCode } from 'lucide-react';
 
 interface ExhibitAScrollProps {
   items: PortfolioItem[];
@@ -12,7 +12,8 @@ interface ExhibitAScrollProps {
 
 export const ExhibitA_Scrolls: React.FC<ExhibitAScrollProps> = ({
   items,
-  onOpenDetail
+  onOpenDetail,
+  onEditItem
 }) => {
   const scrollItems = items.filter(item => item.exhibit === 'scrolls');
 
@@ -51,6 +52,18 @@ export const ExhibitA_Scrolls: React.FC<ExhibitAScrollProps> = ({
                 
                 {/* Action Buttons */}
                 <div className="flex items-center gap-1">
+                  {onEditItem && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onEditItem(item);
+                      }}
+                      className="p-1.5 text-[#666159] hover:text-[#C5A059] hover:bg-[#F7F4EE] rounded transition-colors"
+                      title="Edit Title, Description & Content"
+                    >
+                      <Edit3 size={15} />
+                    </button>
+                  )}
                   <button
                     onClick={() => onOpenDetail(item)}
                     className="p-1.5 text-[#666159] hover:text-[#1C1A17] hover:bg-[#F7F4EE] rounded transition-colors"

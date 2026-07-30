@@ -13,7 +13,8 @@ interface DetailModalProps {
 export const DetailModal: React.FC<DetailModalProps> = ({
   item,
   isOpen,
-  onClose
+  onClose,
+  onEdit
 }) => {
   if (!isOpen || !item) return null;
 
@@ -160,7 +161,19 @@ export const DetailModal: React.FC<DetailModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="px-6 py-4 border-t border-[#EBE7DF] bg-[#F7F4EE] flex items-center justify-end">
+        <div className="px-6 py-4 border-t border-[#EBE7DF] bg-[#F7F4EE] flex items-center justify-between">
+          {onEdit ? (
+            <button
+              onClick={() => {
+                onClose();
+                onEdit(item);
+              }}
+              className="px-4 py-2 text-xs font-sans tracking-widest uppercase text-[#1C1A17] hover:text-[#C5A059] border border-[#D8D2C6] hover:border-[#C5A059] rounded-sm transition-colors"
+            >
+              Edit Artifact Content
+            </button>
+          ) : <div />}
+          
           <button
             onClick={onClose}
             className="px-5 py-2 text-xs font-sans tracking-widest uppercase bg-[#1C1A17] text-[#FAFAFA] hover:bg-[#C5A059] rounded-sm transition-colors"

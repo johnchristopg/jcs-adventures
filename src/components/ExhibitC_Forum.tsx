@@ -2,7 +2,7 @@ import React from 'react';
 import { PortfolioItem } from '../types';
 import { AmphitheaterIcon } from './GreekIcon';
 import { GreekKeyDivider } from './GreekKeyDivider';
-import { Eye, Video, ExternalLink } from 'lucide-react';
+import { Edit3, Eye, Video, ExternalLink } from 'lucide-react';
 
 interface ExhibitCForumProps {
   items: PortfolioItem[];
@@ -12,7 +12,8 @@ interface ExhibitCForumProps {
 
 export const ExhibitC_Forum: React.FC<ExhibitCForumProps> = ({
   items,
-  onOpenDetail
+  onOpenDetail,
+  onEditItem
 }) => {
   const forumItems = items.filter(item => item.exhibit === 'forum');
 
@@ -54,6 +55,14 @@ export const ExhibitC_Forum: React.FC<ExhibitCForumProps> = ({
               </div>
 
               <div className="flex items-center gap-2">
+                {onEditItem && (
+                  <button
+                    onClick={() => onEditItem(item)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-sans tracking-wider uppercase text-[#1C1A17] border border-[#D8D2C6] hover:border-[#C5A059] hover:text-[#C5A059] rounded-sm transition-colors"
+                  >
+                    <Edit3 size={14} /> Edit Activity
+                  </button>
+                )}
                 <button
                   onClick={() => onOpenDetail(item)}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-sans tracking-wider uppercase bg-[#1C1A17] text-[#FAFAFA] hover:bg-[#C5A059] rounded-sm transition-colors"

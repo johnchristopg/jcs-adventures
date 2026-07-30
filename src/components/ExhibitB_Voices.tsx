@@ -2,7 +2,7 @@ import React from 'react';
 import { PortfolioItem } from '../types';
 import { TheaterMaskIcon } from './GreekIcon';
 import { GreekKeyDivider } from './GreekKeyDivider';
-import { Users, Eye, ExternalLink, Video } from 'lucide-react';
+import { Users, Edit3, Eye, ExternalLink, Video } from 'lucide-react';
 
 interface ExhibitBVoicesProps {
   items: PortfolioItem[];
@@ -12,7 +12,8 @@ interface ExhibitBVoicesProps {
 
 export const ExhibitB_Voices: React.FC<ExhibitBVoicesProps> = ({
   items,
-  onOpenDetail
+  onOpenDetail,
+  onEditItem
 }) => {
   const voiceItems = items.filter(item => item.exhibit === 'voices');
 
@@ -54,6 +55,14 @@ export const ExhibitB_Voices: React.FC<ExhibitBVoicesProps> = ({
               </div>
 
               <div className="flex items-center gap-2">
+                {onEditItem && (
+                  <button
+                    onClick={() => onEditItem(item)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-sans tracking-wider uppercase text-[#1C1A17] border border-[#D8D2C6] hover:border-[#C5A059] hover:text-[#C5A059] rounded-sm transition-colors"
+                  >
+                    <Edit3 size={14} /> Edit Activity
+                  </button>
+                )}
                 <button
                   onClick={() => onOpenDetail(item)}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-sans tracking-wider uppercase bg-[#1C1A17] text-[#FAFAFA] hover:bg-[#C5A059] rounded-sm transition-colors"
